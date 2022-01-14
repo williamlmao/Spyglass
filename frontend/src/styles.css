@@ -1,0 +1,12 @@
+body {
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "circularstd"; /*Can be any text*/
+  src: local("circularstd"), url("./fonts/circularstd.ttf") format("truetype");
+}
+
+p {
+  font-family: "circularstd";
+}
