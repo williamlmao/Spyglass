@@ -24,6 +24,7 @@
 body {
   padding-top: 110px;
   z-index: 0;
+  background-color: #e5e5e5;
 }
 
 p {
@@ -33,6 +34,8 @@ p {
 #Grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 15px;
 }
 
 #Feed {
