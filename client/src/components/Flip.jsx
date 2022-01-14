@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { useKeyPressEvent } from "react-use";
 
-const Flipbook = ({ assets }) => {
-  // Subcomponent will be image display
-  // Use state to index and control which asset is being shown
+const Flip = () => {
+  const assets = useSelector((state) => state.storestate.assets);
+
   const [index, setIndex] = useState(0);
   const handleRight = () => {
     setIndex(index + 1);
@@ -16,13 +17,12 @@ const Flipbook = ({ assets }) => {
   useKeyPressEvent("ArrowRight", handleRight);
   useKeyPressEvent("ArrowLeft", handleLeft);
 
-  if (assets) {
+  if (Object.keys(assets).length > 0) {
     return (
       <div id="flipbook">
+        <h3>FLIP</h3>
         <p>{assets[index].name}</p>
-
         <img src={assets[index].image_url} alt="hello" />
-        <p>{JSON.stringify(assets)}</p>
       </div>
     );
   } else {
@@ -30,4 +30,4 @@ const Flipbook = ({ assets }) => {
   }
 };
 
-export default Flipbook;
+export default Flip;

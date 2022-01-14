@@ -1,12 +1,69 @@
-body {
-  overflow: hidden;
-}
-
 @font-face {
   font-family: "circularstd"; /*Can be any text*/
   src: local("circularstd"), url("./fonts/circularstd.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "pointpanther"; /*Can be any text*/
+  src: local("pointpanther"), url("./fonts/pointpanther.otf") format("truetype");
+}
+
+.settings {
+  padding: 0px 40px 0px 40px;
+}
+
+.searchbar {
+  width: 500px;
+}
+
+/* html {
+  padding-left: 40px;
+  padding-right: 40px;
+} */
+
+body {
+  padding-top: 110px;
+  z-index: 0;
+}
+
 p {
   font-family: "circularstd";
+}
+
+#Grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#Feed {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#Logo {
+  font-size: 64px;
+  font-family: "pointpanther";
+  font-weight: 700;
+  margin-right: 100px;
+}
+
+header {
+  display: flex;
+  padding: 10px 40px 0px 40px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  width: 100%;
 }
