@@ -19,6 +19,8 @@ const AssetSchema = mongoose.Schema({
   collectionSlug: String,
   predictedPrice: Number,
   valuation: String,
+  liked: Boolean,
+  rating: Number,
   traits: [TraitSchema],
 });
 
