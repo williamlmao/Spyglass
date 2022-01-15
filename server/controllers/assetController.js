@@ -84,7 +84,6 @@ exports.syncAssets = async (req, res, next) => {
 exports.addPriceData = async (req, res, next) => {
   const csvFileName = req.params.fileName;
   const filePath = `${DATA_DIR}/${csvFileName}.csv`;
-  const results = [];
   fs.createReadStream(filePath)
     .pipe(csv())
     .on("data", async (row) => {
@@ -121,16 +120,16 @@ exports.addPriceData = async (req, res, next) => {
 
 // Dev function to update docs
 exports.updateAssets = async (req, res, next) => {
-  const assets = await Asset.find().limit(5);
-  console.log(assets);
-  let count = 0;
+  const assets = await Asset.find({});
   for (const asset of assets) {
-    console.log(typeof asset.tokenId);
-    console.log(asset);
-    // console.log(count);
-    // asset.tokenId = Number(asset.tokenId);
-    // await asset.save();
-    // count++;
+    asset.liked = false;
+    asset.rating = null;
+    asset.valuation = asset.valuation ? asset.valuation : null;
+    asset.buyNowPrice = asset.buyNowPrice ? asset.buyNowPrice : null;
+    asset.predictedPrice = asset.predictedPrice ? asset.predictedPrice : null;
+
+    await asset.save();
+    console.log(`Updated asset ${asset.collectionSlug}#${asset.tokenId} `);
   }
   res.json("finished");
 };
