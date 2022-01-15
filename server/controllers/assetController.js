@@ -38,13 +38,16 @@ exports.indexCollection = async (req, res, next) => {
       if (!assetDoc) {
         newAssets += 1;
         assetDoc = new Asset({
-          tokenId: asset.token_id,
+          tokenId: Number(asset.token_id),
           imageUrl: asset.image_url,
           numSales: asset.num_sales,
           name: asset.name,
           description: asset.description, // Tends to be same as collection description
           saleListed: asset.sell_orders !== null, // TODO: differentiate between buy now / auction
           traits: traits,
+          collection: {
+            slug: collectionSlug,
+          },
         });
       } else {
         totalAlreadyFoundAssets += 1;
@@ -65,6 +68,21 @@ exports.indexCollection = async (req, res, next) => {
 
 exports.getAssets = async (req, res, _next) => {
   const assetDocs = await Asset.find({}).sort("tokenId");
-  console.log(assetDocs.length);
   res.json(assetDocs);
+};
+
+// Dev function to update docs
+exports.updateAssets = async (req, res, next) => {
+  const assets = await Asset.find().limit(5);
+  console.log(assets);
+  let count = 0;
+  for (const asset of assets) {
+    console.log(typeof asset.tokenId);
+    console.log(asset);
+    // console.log(count);
+    // asset.tokenId = Number(asset.tokenId);
+    // await asset.save();
+    // count++;
+  }
+  res.json("finished");
 };

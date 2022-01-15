@@ -8,6 +8,8 @@ router.get(
   "/index_collection/:collectionSlug",
   assetController.indexCollection
 );
+// Dev Route for mongo queries.
+router.get("/update_assets", assetController.updateAssets);
 // TODO: params
 router.get("/assets", assetController.getAssets);
 

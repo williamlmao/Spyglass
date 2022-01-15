@@ -21,7 +21,7 @@ const TraitSchema = mongoose.Schema({
 const AssetSchema = mongoose.Schema({
   name: String,
   description: String,
-  tokenId: String,
+  tokenId: Number,
   imageUrl: String,
   numSales: Number,
   saleListed: Boolean,
