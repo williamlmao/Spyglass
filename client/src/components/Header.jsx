@@ -39,10 +39,15 @@ const Header = () => {
         url: endpoint(type, contractSlug, limit, i),
       };
     };
+    const addLikeRating = (data) => {
+      return data.map((asset) => {
+        asset["liked"] = false;
+        asset["rating"] = null;
+      });
+    };
     axios
       .request(options("collections", contractSlug))
       .then(function (response) {
-        console.log("res data", response.data);
         initializeCollection(dispatch, response.data);
       })
       .catch(function (error) {

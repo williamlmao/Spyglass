@@ -25,6 +25,7 @@ body {
   padding-top: 110px;
   z-index: 0;
   background-color: #e5e5e5;
+  overflow-x: hidden;
 }
 
 p {
@@ -69,4 +70,9 @@ header {
   justify-content: center;
   padding: 40px;
   width: 100%;
+}
+
+.flipcard {
+  width: 500px;
+  height: 800px;
 }

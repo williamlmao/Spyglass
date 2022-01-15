@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useKey } from "react-use";
 import { setFlipIndex } from "../actions";
 import { filterAssets } from "../helpers";
-import SingleCard from "./SingleCard";
+import FlipCard from "./FlipCard";
 
 const Flip = () => {
   const filteredAssets = useSelector(
@@ -29,11 +29,7 @@ const Flip = () => {
       setIndex(0);
       console.log("index", index);
     }
-    return (
-      <div id="flipbook">
-        <SingleCard asset={filteredAssets[index]} />
-      </div>
-    );
+    return <FlipCard asset={filteredAssets[index]} />;
   } else {
     return null;
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SingleCard from "./SingleCard";
-import LazyLoad from "react-lazyload";
 
 /**
  * Feed view
@@ -11,11 +10,7 @@ const Feed = () => {
   const assets = useSelector((state) => state.storestate.assets);
   const createFeed = () => {
     return assets.map((asset, index) => {
-      return (
-        <LazyLoad offset={1000}>
-          <SingleCard asset={asset} key={index} />
-        </LazyLoad>
-      );
+      return <SingleCard asset={asset} key={index} />;
     });
   };
 

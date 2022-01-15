@@ -12,11 +12,7 @@ import "../fonts/pointpanther.otf";
 const Header = () => {
   const dispatch = useDispatch();
   const collection = useSelector((state) => state.storestate.collection);
-  return (
-    <div>
-      <img src={collection.bannerImageUrl} />
-    </div>
-  );
+  return <div>{/* <img src={collection.bannerImageUrl} /> */}</div>;
 };
 
 export default Header;
