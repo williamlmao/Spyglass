@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SingleCard from "./SingleCard";
-import LazyLoad from "react-lazy-load";
+import LazyLoad from "react-lazyload";
 
 /**
  * Feed view
