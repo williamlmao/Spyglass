@@ -4,6 +4,9 @@ import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
 import { setFilteredAssets, setSelectedFilters } from "../actions";
 import { filterAssets } from "../helpers";
+import RangeSlider from "react-bootstrap-range-slider";
+
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 
 /**
  * Displays the options for filters, but also triggers setFilteredAssets
@@ -11,6 +14,8 @@ import { filterAssets } from "../helpers";
  */
 const FilterSelection = () => {
   const dispatch = useDispatch();
+  const [rangeSliderRating, setRangeSliderRating] = useState(0);
+  const [rangeSliderPrice, setRangeSliderPrice] = useState(0);
   // Handle updates in local state and then dispatch to store from useEffect. Could manage it out of redux altogether but figured this was easier
   const [filterState, setFilterState] = useState({});
   const assets = useSelector((state) => state.storestate.assets);
@@ -102,7 +107,36 @@ const FilterSelection = () => {
     return <Accordion>{accordion}</Accordion>;
   };
 
-  return <div>{buildTraitFilters()}</div>;
+  return (
+    <div>
+      <p>Liked</p>
+      <div>
+        <Form.Check type="checkbox" label="Unliked" />
+        <Form.Check type="checkbox" label="Liked" />
+      </div>
+      <p>Rating</p>
+      <RangeSlider
+        value={rangeSliderRating}
+        min="1"
+        max="10"
+        onChange={(changeEvent) =>
+          setRangeSliderRating(changeEvent.target.value)
+        }
+      />
+
+      <p>Price</p>
+      <RangeSlider
+        value={rangeSliderPrice}
+        min="0"
+        max="100"
+        onChange={(changeEvent) =>
+          setRangeSliderPrice(changeEvent.target.value)
+        }
+      />
+      <p>Traits</p>
+      {buildTraitFilters()}
+    </div>
+  );
 };
 
 export default FilterSelection;

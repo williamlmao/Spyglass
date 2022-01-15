@@ -5,7 +5,13 @@ import Button from "react-bootstrap/Button";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
+import {
+  AiOutlineCaretLeft,
+  AiOutlineCaretRight,
+  AiFillHeart,
+  AiOutlineHeart,
+} from "react-icons/ai";
+import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { likeAsset, rateAsset } from "../actions";
 import { useKeyPressEvent } from "react-use";
@@ -87,6 +93,7 @@ const FlipCard = ({ asset }) => {
           value={button.value}
           checked={asset.rating === button.value}
           onChange={(e) => setratingValue(e.currentTarget.value)}
+          size="lg"
         >
           {button.value}
         </ToggleButton>
@@ -98,21 +105,20 @@ const FlipCard = ({ asset }) => {
       <div className="flipcard">
         <SingleCard asset={asset} />
         <div className="flipcardLayer1">
-          <AiOutlineCaretLeft />
-          <Button
-            onClick={() => {
-              likeAsset(dispatch, asset.tokenId);
-            }}
-          >
-            Like
-          </Button>
-          <AiOutlineCaretRight />
+          <AiOutlineCaretLeft className="caret" />
+          <div className="likebutton">
+            {asset.liked ? (
+              <BsSuitHeartFill className="likeButtonFilled" />
+            ) : (
+              <BsSuitHeart className="likeButtonEmpty" />
+            )}
+          </div>
+
+          <AiOutlineCaretRight className="caret" />
         </div>
         <div className="flipcardLayer2">
-          <ButtonToolbar aria-label="Toolbar with button groups">
-            <ButtonGroup className="me-2" aria-label="First group">
-              {renderButtons()}
-            </ButtonGroup>
+          <ButtonToolbar>
+            <ButtonGroup>{renderButtons()}</ButtonGroup>
           </ButtonToolbar>
         </div>
 

@@ -29,7 +29,11 @@ const Flip = () => {
       setIndex(0);
       console.log("index", index);
     }
-    return <FlipCard asset={filteredAssets[index]} />;
+    return (
+      <div className="flipview">
+        <FlipCard asset={filteredAssets[index]} />
+      </div>
+    );
   } else {
     return null;
   }

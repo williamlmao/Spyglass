@@ -76,3 +76,40 @@ header {
   width: 500px;
   height: 800px;
 }
+.flipcardLayer1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+.likeButtonEmpty {
+  height: 30px;
+  width: 30px;
+  color: grey;
+}
+
+.likeButtonFilled {
+  height: 30px;
+  width: 30px;
+  color: #ff0000;
+}
+
+.caret {
+  height: 30px;
+  width: 30px;
+  color: grey;
+}
+
+.flipcardLayer2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.flipview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
