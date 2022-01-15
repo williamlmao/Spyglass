@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/index.js");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 
 const PORT = 4200;
 const DB_USER = process.env.DB_USER;
@@ -10,6 +11,7 @@ const MONGO_CONNECTION_URI = `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.qbcla
 
 mongoose.connect(MONGO_CONNECTION_URI, { useNewUrlParser: true }).then(() => {
   const app = express();
+  app.use(cors());
   app.use(express.json());
   app.use("/api", routes);
   app.listen(PORT, () => {

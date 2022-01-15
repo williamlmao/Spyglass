@@ -46,6 +46,7 @@ exports.indexCollection = async (req, res, next) => {
         });
       } else {
         // TOOD: Logic to update assets if they exist?
+        console.log("in the else case");
       }
       await assetDoc.save();
     }
@@ -57,5 +58,6 @@ exports.indexCollection = async (req, res, next) => {
 
 exports.getAssets = async (req, res, _next) => {
   const assetDocs = await Asset.find({});
+  console.log(assetDocs.length);
   res.json(assetDocs);
 };
