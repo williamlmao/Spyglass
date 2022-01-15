@@ -41,10 +41,6 @@ exports.syncAssets = async (req, res, next) => {
       let assetDoc = await Asset.findOne({
         collectionSlug: collectionSlug,
         tokenId: asset.token_id,
-<<<<<<< HEAD
-        imageUrl: asset.imageUrl,
-=======
->>>>>>> 65e7de7ce50f629d4d0f06a63a5af0bff5a84d0a
       });
       // console.log("-------------------------------------------------");
       // console.log(asset);
