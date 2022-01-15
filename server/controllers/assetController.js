@@ -1,5 +1,9 @@
 const axios = require("axios");
 const Asset = require("../models/Asset");
+const csv = require("csv-parser");
+const fs = require("fs");
+
+const DATA_DIR = "../data";
 
 const requestAssets = async (collectionSlug, offset = 0, limit = 50) => {
   try {
@@ -77,8 +81,42 @@ exports.syncAssets = async (req, res, next) => {
   res.json("Success, Sync Complete!");
 };
 
-exports.addTraitValuations = async (req, res, next) => {
-  res.json("Success, Added Trait Valuations!");
+exports.addPriceData = async (req, res, next) => {
+  const csvFileName = req.params.fileName;
+  const filePath = `${DATA_DIR}/${csvFileName}.csv`;
+  const results = [];
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on("data", async (row) => {
+      // TODO: Reformat CSV columns before analysis export instead of wrangling again here, just doing this to ship quickly
+      const tokenId = row.unique_id.replace(/\D/g, "");
+      const collectionSlug =
+        row.collection_name === "BoredApeYachtClub"
+          ? "boredapeyachtclub"
+          : "doodles-official";
+
+      let assetDoc = await Asset.findOne({
+        collectionSlug: collectionSlug,
+        tokenId: tokenId,
+      });
+
+      if (assetDoc) {
+        assetDoc.saleListed = true;
+        assetDoc.buyNowPrice = row.current_price;
+        assetDoc.predictedPrice = row.predicted_price;
+        assetDoc.valuation = row.pricing;
+        assetDoc.save();
+        console.log(`Finished updating asset ${collectionSlug}-${tokenId}`);
+      } else {
+        console.error(
+          `Asset not found! Collection: ${collectionSlug}, TokenID: ${tokenId}`
+        );
+      }
+    })
+    .on("end", () => {
+      console.log("Finished Reading CSV");
+    });
+  res.json("Finished Updating Price Data");
 };
 
 // Dev function to update docs

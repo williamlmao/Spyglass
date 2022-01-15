@@ -13,7 +13,7 @@ router.get(
   "/sync_collections/:collectionSlug",
   collectionController.syncCollection
 );
-router.get("/add_trait_valuations", assetController.addTraitValuations);
+router.get("/add_price_data/:fileName", assetController.addPriceData);
 
 // Scrap Dev routes for updating collection / mongo queries
 router.get("/update_assets", assetController.updateAssets);
