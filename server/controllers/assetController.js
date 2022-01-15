@@ -14,7 +14,13 @@ const requestAssets = async (collectionSlug, offset = 0, limit = 50) => {
 
 exports.getAssets = async (req, res, _next) => {
   const collectionSlug = req.params.collectionSlug;
-  const assetDocs = await Asset.find({ collectionSlug }).sort("tokenId");
+  const limit = req.query.limit ?? 10000;
+  const offset = req.query.offset ?? 0;
+  const assetDocs = await Asset.find({ collectionSlug: collectionSlug })
+    .sort("tokenId")
+    .limit(limit)
+    .skip(offset)
+    .exec();
   res.json(assetDocs);
 };
 
