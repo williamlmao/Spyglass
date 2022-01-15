@@ -1,16 +1,21 @@
 const assetController = require("../controllers/assetController");
+const collectionController = require("../controllers/collectionController");
 const express = require("express");
-const axios = require("axios");
 const router = express.Router();
-const Asset = require("../models/Asset");
 
+// Front end routes
+router.get("/assets/:collectionSlug", assetController.getAssets);
+router.get("/collections/:collectionSlug", collectionController.getCollection);
+
+// Sync Routes
+router.get("/sync_assets/:collectionSlug", assetController.syncAssets);
 router.get(
-  "/index_collection/:collectionSlug",
-  assetController.indexCollection
+  "/sync_collections/:collectionSlug",
+  collectionController.syncCollection
 );
-// Dev Route for mongo queries.
+router.get("/add_trait_valuations", assetController.addTraitValuations);
+
+// Scrap Dev routes for updating collection / mongo queries
 router.get("/update_assets", assetController.updateAssets);
-// TODO: params
-router.get("/assets", assetController.getAssets);
 
 module.exports = router;

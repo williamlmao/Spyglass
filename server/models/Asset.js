@@ -1,15 +1,5 @@
 const mongoose = require("mongoose");
 
-const CollectionSchema = mongoose.Schema({
-  floorPrice: Number,
-  averagePrice: Number,
-  oneDayVolume: Number,
-  sevenDayVolume: Number,
-  thirtyDayVolume: Number,
-  description: String,
-  slug: String,
-});
-
 const TraitSchema = mongoose.Schema({
   traitType: String,
   value: String,
@@ -26,7 +16,7 @@ const AssetSchema = mongoose.Schema({
   numSales: Number,
   saleListed: Boolean,
   buyNowPrice: Number,
-  nftCollection: CollectionSchema,
+  collectionSlug: String,
   traits: [TraitSchema],
 });
 

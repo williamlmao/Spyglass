@@ -12,7 +12,13 @@ const requestAssets = async (collectionSlug, offset = 0, limit = 50) => {
   }
 };
 
-exports.indexCollection = async (req, res, next) => {
+exports.getAssets = async (req, res, _next) => {
+  const collectionSlug = req.params.collectionSlug;
+  const assetDocs = await Asset.find({ collectionSlug }).sort("tokenId");
+  res.json(assetDocs);
+};
+
+exports.syncAssets = async (req, res, next) => {
   const collectionSlug = req.params.collectionSlug;
   let offset = 0;
   let assets;
@@ -34,10 +40,10 @@ exports.indexCollection = async (req, res, next) => {
         value: trait.value,
         traitCount: trait.trait_count,
       }));
-      // TODO: Find and add collection mapping & stats
       if (!assetDoc) {
         newAssets += 1;
         assetDoc = new Asset({
+          collectionSlug: collectionSlug,
           tokenId: Number(asset.token_id),
           imageUrl: asset.image_url,
           numSales: asset.num_sales,
@@ -45,13 +51,10 @@ exports.indexCollection = async (req, res, next) => {
           description: asset.description, // Tends to be same as collection description
           saleListed: asset.sell_orders !== null, // TODO: differentiate between buy now / auction
           traits: traits,
-          collection: {
-            slug: collectionSlug,
-          },
         });
       } else {
         totalAlreadyFoundAssets += 1;
-        // TOOD: Logic to update assets if they exist?
+        // TOOD: Logic to update assets if they exist
         console.log("in the else case");
       }
       await assetDoc.save();
@@ -59,16 +62,14 @@ exports.indexCollection = async (req, res, next) => {
     console.log(`totalAssetsRetrieved: ${totalAssetsRetrieved}`);
     console.log(`totalAlreadyFoundAssets: ${totalAlreadyFoundAssets}`);
     console.log(`newAssets: ${newAssets}`);
-
     offset += 50;
   }
 
-  res.json("Success, Index Complete!");
+  res.json("Success, Sync Complete!");
 };
 
-exports.getAssets = async (req, res, _next) => {
-  const assetDocs = await Asset.find({}).sort("tokenId");
-  res.json(assetDocs);
+exports.addTraitValuations = async (req, res, next) => {
+  res.json("Success, Added Trait Valuations!");
 };
 
 // Dev function to update docs
