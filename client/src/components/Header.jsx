@@ -2,41 +2,73 @@ import React, { useEffect, useState } from "react";
 import ViewSelection from "./ViewSelection";
 import FilterSelection from "./FilterSelection";
 import { useSelector, useDispatch } from "react-redux";
-import { setContractAddress } from "../actions";
+import {
+  initializeFilteredAssets,
+  setContractAddress,
+  initializeCollection,
+} from "../actions";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Modal from "react-bootstrap/Modal";
-import { loadAssets, setAssetStatus, setFilteredAssets } from "../actions";
+import {
+  loadAssets,
+  loadInitialAssets,
+  setAssetStatus,
+  setFilteredAssets,
+} from "../actions";
+import { endpoint } from "../helpers";
 import "../fonts/pointpanther.otf";
 const Header = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;
-  const [contract, setContract] = useState("doodles");
+  // todo: rename this and remove doodles-official
+  const [contract, setContract] = useState("doodles-official");
   //modal
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const loadCollection = (contract) => {
+
+  const loadCollection = (contractSlug) => {
     // These assets to be consumed different later on
-    const options = {
-      method: "GET",
-      // url: `https://api.opensea.io/api/v1/assets?asset_contract_address=${contract}&order_direction=desc&offset=0&limit=50`,
-      url: `http://localhost:4200/api/assets/doodles-official`,
-      // headers: {
-      //   Accept: "application/json",
-      //   "X-API-KEY": "a1e7e59f08ab40c2a987005a5e4557bc",
-      // },
+    let limit = 500;
+    const options = (type, slug, limit, i) => {
+      return {
+        method: "GET",
+        url: endpoint(type, contractSlug, limit, i),
+      };
     };
     axios
-      .request(options)
+      .request(options("collections", contractSlug))
       .then(function (response) {
-        console.log(response.data);
-        loadAssets(dispatch, response.data);
-        // On initial submission of a new contract, filtered assets is equal to assets
-        setFilteredAssets(dispatch, response.data);
+        console.log("res data", response.data);
+        initializeCollection(dispatch, response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    // Load first 500 assets for performance
+    axios
+      .request(options("assets", contractSlug, limit, 0))
+      .then(function (response) {
+        loadInitialAssets(dispatch, response.data);
+        // // On initial submission of a new contract, filtered assets is equal to assets
+        initializeFilteredAssets(dispatch);
         setAssetStatus(dispatch, "Loaded");
+        // Load remaining assets
+        // todo: update these to be dynamic based on collection size
+        axios
+          .request(options("assets", contractSlug, 10000 - limit, limit))
+          .then(function (response) {
+            loadAssets(dispatch, response.data);
+            // // On initial submission of a new contract, filtered assets is equal to assets
+            initializeFilteredAssets(dispatch);
+            setAssetStatus(dispatch, "Loaded");
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
       })
       .catch(function (error) {
         console.error(error);
@@ -70,7 +102,7 @@ const Header = () => {
       </div>
       <ViewSelection />
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Filters
       </Button>
 
       <Modal show={show} onHide={handleClose}>

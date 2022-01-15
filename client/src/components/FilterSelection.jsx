@@ -14,24 +14,21 @@ const FilterSelection = () => {
   // Handle updates in local state and then dispatch to store from useEffect. Could manage it out of redux altogether but figured this was easier
   const [filterState, setFilterState] = useState({});
   const assets = useSelector((state) => state.storestate.assets);
+  const collection = useSelector((state) => state.storestate.collection);
 
   const checkFilters = () => {
     let filtersSet = false;
     let traits = Object.keys(filterState);
     traits.forEach((trait) => {
-      console.log("filterState", filterState[trait]);
       if (filterState[trait].length > 0) {
         filtersSet = true;
       }
     });
     return filtersSet;
   };
-
   useEffect(() => {
-    console.log("filtered state", filterState);
     setSelectedFilters(dispatch, filterState);
     // Check if filters no filters are set. If no filters are set, set full collection back as filtered assets
-    console.log("checking filters", checkFilters(filterState));
     if (checkFilters(filterState)) {
       setFilteredAssets(dispatch, filterAssets(assets, filterState));
     } else {
@@ -39,17 +36,23 @@ const FilterSelection = () => {
     }
   }, [filterState]);
 
-  // todo: replace with filters from API
-  const filters = {
-    traitTypes: {
-      hair: ["purple cap", "beanie", "cowboy hat"],
-      head: ["Yellow"],
-    },
+  // Grabs traits from the collections object in state
+  const getTraitFilters = () => {
+    const traits = { ...collection.traits };
+    const traitKeys = Object.keys(traits);
+    // Flatten the traits
+    traitKeys.forEach((trait) => {
+      traits[trait] = Object.keys(traits[trait]);
+    });
+    return traits;
   };
 
-  // Builds the checkbox options for filter widget
+  const traitFilters = getTraitFilters();
+
+  // Builds check boxes
+  // Takes an array
   const buildFilterOptions = (trait) => {
-    let filterOptions = filters.traitTypes[trait].map((value) => {
+    let filterOptions = trait.map((value) => {
       return (
         <Form.Check
           type="checkbox"
@@ -84,24 +87,22 @@ const FilterSelection = () => {
   };
 
   // Builds the accordion layer of filter widget
-  const buildFilters = () => {
-    let traitTypes = Object.keys(filters.traitTypes);
+  const buildTraitFilters = () => {
+    let traitTypes = Object.keys(traitFilters);
     let accordion = traitTypes.map((trait, index) => {
       return (
         <Accordion.Item eventKey={index}>
           <Accordion.Header>{trait}</Accordion.Header>
-          <Accordion.Body>{buildFilterOptions(trait)}</Accordion.Body>
+          <Accordion.Body>
+            {buildFilterOptions(traitFilters[trait])}
+          </Accordion.Body>
         </Accordion.Item>
       );
     });
     return <Accordion>{accordion}</Accordion>;
   };
 
-  return (
-    <div>
-      {buildFilters()} {JSON.stringify(filterState)}
-    </div>
-  );
+  return <div>{buildTraitFilters()}</div>;
 };
 
 export default FilterSelection;

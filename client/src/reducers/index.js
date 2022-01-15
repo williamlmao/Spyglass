@@ -23,8 +23,14 @@ const storestate = (
   switch (action.type) {
     case "SET_CONTRACT_ADDRESS":
       return { ...state, address: action.payload };
-    case "LOAD_ASSETS":
+    case "INITIALIZE_COLLECTION":
+      return { ...state, collection: action.payload };
+    case "LOAD_INITIAL_ASSETS":
       return { ...state, assets: action.payload };
+    case "LOAD_ASSETS":
+      return { ...state, assets: state.assets.concat(action.payload) };
+    case "INITIALIZE_FILTERED_ASSETS":
+      return { ...state, filteredAssets: state.assets };
     case "SET_FILTERED_ASSETS":
       return { ...state, filteredAssets: action.payload };
     case "SET_ASSET_STATUS":

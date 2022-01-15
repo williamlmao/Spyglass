@@ -1,13 +1,15 @@
-// Filter by status
-// Need to get all traits
-
-// Filters the asset list by a filter key and a condition
-
-// const filters = {
-//     Hats: ["Crown", "Horns"],
-//     // Current price is min - max
-//     current_price: [0, 50000],
-//   };
+export const endpoint = (type, collectionSlug, limit, offset) => {
+  if (process.env.NODE_ENV === "development") {
+    if (limit) {
+      return `http://localhost:4200/api/${type}/${collectionSlug}?limit=${limit}&offset=${offset}`;
+    } else {
+      return `http://localhost:4200/api/${type}/${collectionSlug}`;
+    }
+  } else {
+    //todo: update prod
+    return `http://localhost:4200/api/${type}/${collectionSlug}`;
+  }
+};
 
 // Filters by status, price, and traits
 export const filterAssets = (assets, filters) => {

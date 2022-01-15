@@ -14,6 +14,20 @@ export const loadAssets = async (dispatch, assets) => {
   });
 };
 
+export const initializeCollection = async (dispatch, collection) => {
+  dispatch({
+    type: "INITIALIZE_COLLECTION",
+    payload: collection,
+  });
+};
+
+export const loadInitialAssets = async (dispatch, assets) => {
+  dispatch({
+    type: "LOAD_INITIAL_ASSETS",
+    payload: assets,
+  });
+};
+
 export const setAssetStatus = async (dispatch, status) => {
   dispatch({
     type: "SET_ASSET_STATUS",
@@ -33,6 +47,13 @@ export const setFlipIndex = async (dispatch, index) => {
   dispatch({
     type: "SET_FLIP_INDEX",
     payload: index++,
+  });
+};
+
+export const initializeFilteredAssets = async (dispatch) => {
+  dispatch({
+    type: "INITIALIZE_FILTERED_ASSETS",
+    payload: null,
   });
 };
 
