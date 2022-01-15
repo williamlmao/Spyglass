@@ -20,7 +20,7 @@ exports.indexCollection = async (req, res, next) => {
     if (!assetDoc) {
       assetDoc = new Asset({
         tokenId: asset.token_id,
-        imageUrl: asset.image_url,
+        imageUrl: asset.imageUrl,
       });
     } else {
       // TOOD: Update logic?

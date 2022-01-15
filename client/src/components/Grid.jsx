@@ -1,19 +1,22 @@
 import React from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
+import { filterAssets } from "../helpers";
 import SingleCard from "./Card";
 
 const Grid = () => {
-  const assets = useSelector((state) => state.storestate.assets);
-  const createGrid = () => {
-    return assets.map((asset) => {
-      return <SingleCard image={asset.image_url} name={asset.name} />;
-    });
-  };
-
+  const filteredAssets = useSelector(
+    (state) => state.storestate.filteredAssets
+  );
+  // const createGrid = () => {
+  //   return filteredAssets.map((asset) => {
+  //     return <SingleCard image={asset.imageUrl} name={asset.name} />;
+  //   });
+  // };
+  console.log("filtered", filterAssets);
   return (
     <div id="Grid">
       <h3>Grid</h3>
-      {createGrid()}
+      {/* {createGrid()} */}
     </div>
   );
 };

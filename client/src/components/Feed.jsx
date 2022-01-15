@@ -6,7 +6,7 @@ const Feed = () => {
   const assets = useSelector((state) => state.storestate.assets);
   const createFeed = () => {
     return assets.map((asset) => {
-      return <SingleCard image={asset.image_url} name={asset.name} />;
+      return <SingleCard image={asset.imageUrl} name={asset.name} />;
     });
   };
 

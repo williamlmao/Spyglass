@@ -3,10 +3,19 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import Flip from "./Flip";
 import Grid from "./Grid";
 import Feed from "./Feed";
+import { filterAssets } from "./FilterSelection";
 
 const GalleryDisplay = () => {
   const view = useSelector((state) => state.storestate.view);
-  console.log("view", view);
+  const assets = useSelector((state) => state.storestate.assets);
+
+  const traitFilters = {
+    Hats: ["Horns"],
+    Clothing: ["Turtleneck"],
+    // Current price is min - max
+    // current_price: [0, 50000],
+  };
+  // console.log("filtered", filterAssets(assets, traitFilters));
   if (view === "Flip") {
     return (
       <div>

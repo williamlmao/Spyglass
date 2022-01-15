@@ -10,7 +10,14 @@
 import { combineReducers } from "redux";
 
 const storestate = (
-  state = { view: "Flip", assets: {}, assetStatus: "No Address" },
+  state = {
+    view: "Flip",
+    assets: [],
+    assetStatus: "No Address",
+    flipIndex: 0,
+    selectedFilters: {},
+    filteredAssets: [],
+  },
   action
 ) => {
   switch (action.type) {
@@ -18,10 +25,16 @@ const storestate = (
       return { ...state, address: action.payload };
     case "LOAD_ASSETS":
       return { ...state, assets: action.payload };
+    case "SET_FILTERED_ASSETS":
+      return { ...state, filteredAssets: action.payload };
     case "SET_ASSET_STATUS":
       return { ...state, assetStatus: action.payload };
     case "SET_VIEW":
       return { ...state, view: action.payload };
+    case "SET_FLIP_INDEX":
+      return { ...state, flipIndex: action.payload };
+    case "SET_SELECTED_FILTERS":
+      return { ...state, selectedFilters: action.payload };
     default:
       return state;
   }
