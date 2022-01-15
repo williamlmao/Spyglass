@@ -66,13 +66,12 @@ const FilterSelection = () => {
     let traitTypes = Object.keys(filters.traitTypes);
     let accordion = traitTypes.map((trait, index) => {
       return (
-        <Accordion.Item eventKey="0">
+        <Accordion.Item eventKey={index}>
           <Accordion.Header>{trait}</Accordion.Header>
           <Accordion.Body>{buildFilterOptions(trait)}</Accordion.Body>
         </Accordion.Item>
       );
     });
-
     return <Accordion>{accordion}</Accordion>;
   };
 
