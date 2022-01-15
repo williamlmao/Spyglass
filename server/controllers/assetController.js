@@ -1,5 +1,9 @@
 const axios = require("axios");
 const Asset = require("../models/Asset");
+const csv = require("csv-parser");
+const fs = require("fs");
+
+const DATA_DIR = "../data";
 
 const requestAssets = async (collectionSlug, offset = 0, limit = 50) => {
   try {
@@ -77,8 +81,24 @@ exports.syncAssets = async (req, res, next) => {
   res.json("Success, Sync Complete!");
 };
 
-exports.addTraitValuations = async (req, res, next) => {
-  res.json("Success, Added Trait Valuations!");
+exports.addPriceData = async (req, res, next) => {
+  const csvFileName = req.params.fileName;
+  const filePath = `${DATA_DIR}/${csvFileName}.csv`;
+  const results = [];
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on("data", (data) => results.push(data))
+    .on("end", () => {
+      // console.log(results);
+      // [
+      //   { NAME: 'Daffy Duck', AGE: '24' },
+      //   { NAME: 'Bugs Bunny', AGE: '22' }
+      // ]
+      // res.json(results);
+    });
+
+  console.log(results);
+  res.json(results);
 };
 
 // Dev function to update docs
