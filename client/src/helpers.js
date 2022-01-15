@@ -11,13 +11,11 @@
 
 // Filters by status, price, and traits
 export const filterAssets = (assets, filters) => {
-  console.log("assets", assets);
   let filteredAssets = [...assets];
   // Get filter keys
   const filterKeys = Object.keys(filters);
   // Filter the assets by one key at a time
   filterKeys.forEach((key) => {
-    console.log("filtered assets", filteredAssets);
     filteredAssets = filteredAssets.filter((asset) => {
       let showAsset = false;
       if (key === "current_price") {

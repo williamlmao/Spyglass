@@ -3,41 +3,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { useKey } from "react-use";
 import { setFlipIndex } from "../actions";
 import { filterAssets } from "../helpers";
+import SingleCard from "./SingleCard";
 
 const Flip = () => {
   const filteredAssets = useSelector(
     (state) => state.storestate.filteredAssets
   );
-  console.log("filtered assets FLIP", filteredAssets);
+
   const [index, setIndex] = useState(0);
-  // const dispatch = useDispatch();
-  // const filteredAssets = useSelector((state) => state.storestate.filteredAssets);
-  // const index = useSelector((state) => state.storestate.flipIndex);
 
   const handleRight = () => {
-    console.log("index", index);
     if (index < filteredAssets.length) {
       setIndex((index) => ++index);
     }
   };
   const handleLeft = () => {
-    console.log("handling left");
-    console.log("index", index);
-    if (index > 1) {
-      console.log("index", index);
-      setIndex((index) => --index);
-    }
+    setIndex((index) => --index);
   };
   useKey("ArrowRight", handleRight);
   useKey("ArrowLeft", handleLeft);
 
   if (Object.keys(filteredAssets).length > 0) {
+    if (filteredAssets[index] === undefined) {
+      console.log("resetting filters to 0");
+      setIndex(0);
+      console.log("index", index);
+    }
     return (
       <div id="flipbook">
-        <h3>FLIP</h3>
-        <h1>{index}</h1>
-        <p>{filteredAssets[index].name}</p>
-        <img src={filteredAssets[index].imageUrl} alt="hello" />
+        <SingleCard asset={filteredAssets[index]} />
       </div>
     );
   } else {

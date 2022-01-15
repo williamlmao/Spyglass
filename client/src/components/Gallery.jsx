@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
-import Flip from "./Flip";
-import Grid from "./Grid";
-import Feed from "./Feed";
+import React from "react";
+import { useSelector } from "react-redux";
 import GalleryDisplay from "./GalleryDisplay";
 import NoAssetDisplay from "./NoAssetsDisplay";
-import ViewSelection from "./ViewSelection";
-import FilterSelection from "./FilterSelection";
 
+/**
+ * Container that either shows the views or loading screen
+ * @returns
+ */
 const Gallery = () => {
   const view = useSelector((state) => state.storestate.view);
   const status = useSelector((state) => state.storestate.assetStatus);
@@ -15,16 +14,13 @@ const Gallery = () => {
   if (status === "Loaded") {
     return (
       <div>
-        <ViewSelection />
-        <FilterSelection />
         <div className="gallery">
-          <h3>Gallery</h3>
           {status === "Loaded" ? <GalleryDisplay /> : status}
         </div>
       </div>
     );
   } else {
-    return <NoAssetDisplay />;
+    return <NoAssetDisplay status={status} />;
   }
 };
 
