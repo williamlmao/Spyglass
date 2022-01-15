@@ -38,7 +38,10 @@ exports.syncAssets = async (req, res, next) => {
     for (const asset of assets) {
       totalAssetsRetrieved += 1;
       console.log(asset.token_id);
-      let assetDoc = await Asset.findOne({ tokenId: asset.token_id });
+      let assetDoc = await Asset.findOne({
+        collectionSlug: collectionSlug,
+        tokenId: asset.token_id,
+      });
       // console.log("-------------------------------------------------");
       // console.log(asset);
       const traits = asset.traits.map((trait) => ({
