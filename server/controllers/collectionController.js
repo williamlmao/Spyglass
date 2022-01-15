@@ -14,8 +14,9 @@ const requestCollection = async (collectionSlug) => {
 
 exports.getCollection = async (req, res, _next) => {
   const collectionSlug = req.params.collectionSlug;
-  const assetDocs = await Collection.findOne({ slug: collectionSlug });
-  res.json(assetDocs);
+  const collectionDoc = await Collection.findOne({ slug: collectionSlug });
+  // TOOD: Remove hardcoded collectionSize
+  res.json({ ...collectionDoc._doc, collectionSize: 10000 });
 };
 
 exports.syncCollection = async (req, res, next) => {
@@ -39,7 +40,7 @@ exports.syncCollection = async (req, res, next) => {
       averagePrice: collection.stats.average_price,
       thirtyDayAveragePrice: collection.stats.thirty_day_average_price,
       totalSales: collection.stats.total_sales,
-      totalSupply: collection.stats.totalSupply,
+      totalSupply: collection.stats.total_supply,
       oneDayVolume: collection.stats.one_day_volume,
       sevenDayVolume: collection.stats.seven_day_volume,
       thirtyDayVolume: collection.stats.thirty_day_volume,
