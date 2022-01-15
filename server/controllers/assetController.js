@@ -87,18 +87,36 @@ exports.addPriceData = async (req, res, next) => {
   const results = [];
   fs.createReadStream(filePath)
     .pipe(csv())
-    .on("data", (data) => results.push(data))
-    .on("end", () => {
-      // console.log(results);
-      // [
-      //   { NAME: 'Daffy Duck', AGE: '24' },
-      //   { NAME: 'Bugs Bunny', AGE: '22' }
-      // ]
-      // res.json(results);
-    });
+    .on("data", async (row) => {
+      // TODO: Reformat CSV columns before analysis export instead of wrangling again here, just doing this to ship quickly
+      const tokenId = row.unique_id.replace(/\D/g, "");
+      const collectionSlug =
+        row.collection_name === "BoredApeYachtClub"
+          ? "boredapeyachtclub"
+          : "doodles-official";
 
-  console.log(results);
-  res.json(results);
+      let assetDoc = await Asset.findOne({
+        collectionSlug: collectionSlug,
+        tokenId: tokenId,
+      });
+
+      if (assetDoc) {
+        assetDoc.saleListed = true;
+        assetDoc.buyNowPrice = row.current_price;
+        assetDoc.predictedPrice = row.predicted_price;
+        assetDoc.valuation = row.pricing;
+        assetDoc.save();
+        console.log(`Finished updating asset ${collectionSlug}-${tokenId}`);
+      } else {
+        console.error(
+          `Asset not found! Collection: ${collectionSlug}, TokenID: ${tokenId}`
+        );
+      }
+    })
+    .on("end", () => {
+      console.log("Finished Reading CSV");
+    });
+  res.json("Finished Updating Price Data");
 };
 
 // Dev function to update docs

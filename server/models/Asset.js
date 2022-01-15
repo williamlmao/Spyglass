@@ -17,6 +17,8 @@ const AssetSchema = mongoose.Schema({
   saleListed: Boolean,
   buyNowPrice: Number,
   collectionSlug: String,
+  predictedPrice: Number,
+  valuation: String,
   traits: [TraitSchema],
 });
 
