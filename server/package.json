@@ -16,5 +16,8 @@
     "mongodb": "^4.3.0",
     "mongoose": "^6.1.6",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
   }
 }

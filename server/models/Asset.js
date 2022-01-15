@@ -1,8 +1,33 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.Schema({
-  tokenId: String,
-  imageUrl: String,
+const CollectionSchema = mongoose.Schema({
+  floorPrice: Number,
+  averagePrice: Number,
+  oneDayVolume: Number,
+  sevenDayVolume: Number,
+  thirtyDayVolume: Number,
+  description: String,
+  slug: String,
 });
 
-module.exports = mongoose.model("Asset", schema);
+const TraitSchema = mongoose.Schema({
+  traitType: String,
+  value: String,
+  traitCount: Number,
+  averageTraitPrice: Number,
+  valuation: String,
+});
+
+const AssetSchema = mongoose.Schema({
+  name: String,
+  description: String,
+  tokenId: String,
+  imageUrl: String,
+  numSales: Number,
+  saleListed: Boolean,
+  buyNowPrice: Number,
+  nftCollection: CollectionSchema,
+  traits: [TraitSchema],
+});
+
+module.exports = mongoose.model("Asset", AssetSchema);
