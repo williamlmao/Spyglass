@@ -13,7 +13,11 @@
 }
 
 .searchbar {
-  width: 500px;
+  width: 460px;
+  height: 32px;
+  /* margin: 8px 91px 0 117px;
+  padding: 4px 289px 4px 11.4px; */
+  background-color: #f4f6ff;
 }
 
 /* html {
