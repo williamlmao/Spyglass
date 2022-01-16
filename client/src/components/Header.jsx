@@ -39,15 +39,10 @@ const Header = () => {
         url: endpoint(type, contractSlug, limit, i),
       };
     };
-    const addLikeRating = (data) => {
-      return data.map((asset) => {
-        asset["liked"] = false;
-        asset["rating"] = null;
-      });
-    };
     axios
       .request(options("collections", contractSlug))
       .then(function (response) {
+        console.log("res data", response.data);
         initializeCollection(dispatch, response.data);
       })
       .catch(function (error) {
@@ -81,41 +76,36 @@ const Header = () => {
   };
   return (
     <header>
-      <div>
-        <span id="Logo">SPYGLASS</span>
-        <div>
-          <div className="searchbar">
-            <InputGroup className="mb-3 search">
-              <FormControl
-                placeholder="Contract Address"
-                aria-label="Contract Address"
-                aria-describedby="basic-addon2"
-                value={contract}
-                onChange={(e) => setContract(e.target.value)}
-                className="searchbar"
-              />
-              <Button
-                variant="outline-secondary"
-                id="button-addon2"
-                onClick={() => {
-                  setAssetStatus(dispatch, "Loading...");
-                  setContractAddress(dispatch, contract);
-                  loadCollection(contract);
-                }}
-              >
-                Search
-              </Button>
-            </InputGroup>
-          </div>
-          <div style={{ display: "flex" }}>
-            <ViewSelection />
-            <Button variant="primary" onClick={handleShow}>
-              Filters
-            </Button>
-          </div>
-        </div>
+      <span id="Logo">SPYGLASS</span>
+      <div className="searchbar">
+        <InputGroup className="mb-3 search">
+          <Button
+            variant="outline-secondary"
+            id="button-addon2"
+            onClick={() => {
+              setAssetStatus(dispatch, "Loading...");
+              setContractAddress(dispatch, contract);
+              loadCollection(contract);
+            }}
+          >
+            <i class="fa fa-search"></i>
+          </Button>
+          <FormControl
+            placeholder="Contract Address"
+            aria-label="Contract Address"
+            aria-describedby="basic-addon2"
+            value={contract}
+            onChange={(e) => setContract(e.target.value)}
+            className="searchbar"
+          />
+        </InputGroup>
       </div>
-
+      <div style={{ display: "flex" }}>
+        <ViewSelection />
+        <Button variant="primary" onClick={handleShow}>
+          Filters
+        </Button>
+      </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
