@@ -76,34 +76,40 @@ const Header = () => {
   };
   return (
     <header>
-      <span id="Logo">SPYGLASS</span>
-      <div className="searchbar">
-        <InputGroup className="mb-3 search">
-          <FormControl
-            placeholder="Contract Address"
-            aria-label="Contract Address"
-            aria-describedby="basic-addon2"
-            value={contract}
-            onChange={(e) => setContract(e.target.value)}
-            className="searchbar"
-          />
-          <Button
-            variant="outline-secondary"
-            id="button-addon2"
-            onClick={() => {
-              setAssetStatus(dispatch, "Loading...");
-              setContractAddress(dispatch, contract);
-              loadCollection(contract);
-            }}
-          >
-            Search
-          </Button>
-        </InputGroup>
+      <div>
+        <span id="Logo">SPYGLASS</span>
+        <div>
+          <div className="searchbar">
+            <InputGroup className="mb-3 search">
+              <FormControl
+                placeholder="Contract Address"
+                aria-label="Contract Address"
+                aria-describedby="basic-addon2"
+                value={contract}
+                onChange={(e) => setContract(e.target.value)}
+                className="searchbar"
+              />
+              <Button
+                variant="outline-secondary"
+                id="button-addon2"
+                onClick={() => {
+                  setAssetStatus(dispatch, "Loading...");
+                  setContractAddress(dispatch, contract);
+                  loadCollection(contract);
+                }}
+              >
+                Search
+              </Button>
+            </InputGroup>
+          </div>
+          <div style={{ display: "flex" }}>
+            <ViewSelection />
+            <Button variant="primary" onClick={handleShow}>
+              Filters
+            </Button>
+          </div>
+        </div>
       </div>
-      <ViewSelection />
-      <Button variant="primary" onClick={handleShow}>
-        Filters
-      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
