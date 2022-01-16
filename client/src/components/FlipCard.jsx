@@ -10,8 +10,11 @@ import FlipData from "./FlipData";
 const FlipCard = ({ asset }) => {
   return (
     <div className="flipcard">
-      <img src={asset.imageUrl} className="flipImg" />
-      <div></div>
+      <div className="flipImageContainer">
+        <img src={asset.imageUrl} className="flipImg" />
+      </div>
+
+      <FlipData asset={asset} />
     </div>
   );
 };

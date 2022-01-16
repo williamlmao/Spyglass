@@ -13,7 +13,13 @@ const NoAssetDisplay = ({ status }) => {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return (
+      <div className="startingpage">
+        <div className="startingpagecontents">
+          <h1>Loading....</h1>
+        </div>
+      </div>
+    );
   }
 };
 

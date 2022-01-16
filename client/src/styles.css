@@ -153,6 +153,17 @@ header {
   margin-top: -32px;
 }
 
+.flipcard {
+  display: flex;
+  width: 100vw;
+  padding: 30px;
+  padding: 50px;
+}
+
+.flipData {
+  width: 500px;
+}
+
 .flipcardLayer1 {
   display: flex;
   justify-content: space-between;
@@ -236,4 +247,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flipimg {
+  /* border-radius: 10px; */
 }

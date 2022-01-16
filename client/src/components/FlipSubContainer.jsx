@@ -105,7 +105,7 @@ const FlipSubContainer = ({ asset }) => {
   };
   return (
     <div id="flipbook">
-      <div className="flipcard">
+      <div className="flipsubcontainer">
         <FlipCard asset={asset} />
         <div className="flipcardLayer1">
           <AiOutlineCaretLeft className="caret" />
@@ -124,8 +124,6 @@ const FlipSubContainer = ({ asset }) => {
             <ButtonGroup>{renderButtons()}</ButtonGroup>
           </ButtonToolbar>
         </div>
-
-        <FlipData asset={asset} />
       </div>
     </div>
   );

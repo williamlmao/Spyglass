@@ -7,7 +7,7 @@ export const endpoint = (type, collectionSlug, limit, offset) => {
     }
   } else {
     //todo: update prod
-    return `https://spyglass-nft.herokuapp.com/${type}/${collectionSlug}`;
+    return `https://spyglass-nft.herokuapp.com/api/${type}/${collectionSlug}`;
   }
 };
 
