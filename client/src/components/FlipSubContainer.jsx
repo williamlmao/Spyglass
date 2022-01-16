@@ -15,10 +15,11 @@ import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { likeAsset, rateAsset } from "../actions";
 import { useKeyPressEvent } from "react-use";
+import opensea from "./images/opensealogo.png";
 
 // Receives asset, manages controls such as like and rate. Parent of flipcard
 
-const FlipSubContainer = ({ asset }) => {
+const FlipSubContainer = ({ asset, collection }) => {
   console.log("im rerendering", asset.rating);
   let dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
@@ -106,23 +107,38 @@ const FlipSubContainer = ({ asset }) => {
   return (
     <div id="flipbook">
       <div className="flipsubcontainer">
-        <FlipCard asset={asset} />
-        <div className="flipcardLayer1">
-          <AiOutlineCaretLeft className="caret" />
-          <div className="likebutton">
-            {asset.liked ? (
-              <BsSuitHeartFill className="likeButtonFilled" />
-            ) : (
-              <BsSuitHeart className="likeButtonEmpty" />
-            )}
+        <FlipCard asset={asset} collection={collection} />
+        <div className="flipcontrols">
+          <div className="flipControlsLayer1">
+            <AiOutlineCaretLeft className="caret" />
+            <div className="likebutton">
+              {asset.liked ? (
+                <BsSuitHeartFill className="likeButtonFilled" />
+              ) : (
+                <BsSuitHeart className="likeButtonEmpty" />
+              )}
+            </div>
+
+            <AiOutlineCaretRight className="caret" />
+          </div>
+          <div className="flipControlsLayer2">
+            <ButtonToolbar>
+              <ButtonGroup>{renderButtons()}</ButtonGroup>
+            </ButtonToolbar>
           </div>
 
-          <AiOutlineCaretRight className="caret" />
-        </div>
-        <div className="flipcardLayer2">
-          <ButtonToolbar>
-            <ButtonGroup>{renderButtons()}</ButtonGroup>
-          </ButtonToolbar>
+          <a
+            href={`https://opensea.io/assets/${
+              collection.slug === "doodles-official"
+                ? "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e"
+                : "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
+            }/${asset.tokenId}`}
+            target="blank"
+          >
+            <div className="buybutton">
+              Buy on <img src={opensea} />
+            </div>
+          </a>
         </div>
       </div>
     </div>

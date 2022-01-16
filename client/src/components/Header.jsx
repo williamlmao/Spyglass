@@ -92,28 +92,23 @@ const Header = () => {
 
       <div className="connectwallet">Connect Wallet</div>
       <div className="header2">
-        <Button variant="primary" onClick={handleShow}>
-          Browse By Traits
+        <Button
+          variant="primary"
+          className="filtersButton"
+          onClick={handleShow}
+        >
+          Filter
         </Button>
 
-        <Button>Browse by Price Fairness</Button>
+        <Button className="collectionButton">Collection Details</Button>
         <ViewSelection />
       </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Filters</Modal.Title>
         </Modal.Header>
-
         <FilterSelection />
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </header>
   );

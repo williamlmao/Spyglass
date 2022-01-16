@@ -24,7 +24,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;
   // todo: rename this and remove doodles-official
-  const [contract, setContract] = useState("doodles-official");
+  const [contract, setContract] = useState("");
   //modal
   const [show, setShow] = useState(false);
 
@@ -33,7 +33,7 @@ const SearchBar = () => {
 
   const loadCollection = (contractSlug) => {
     // These assets to be consumed different later on
-    let limit = 500;
+    let limit = 50;
     const options = (type, slug, limit, i) => {
       return {
         method: "GET",
@@ -65,7 +65,7 @@ const SearchBar = () => {
         // Load remaining assets
         // todo: update these to be dynamic based on collection size
         axios
-          .request(options("assets", contractSlug, 10000 - limit, limit))
+          .request(options("assets", contractSlug, 1000 - limit, limit))
           .then(function (response) {
             loadAssets(dispatch, response.data);
             // // On initial submission of a new contract, filtered assets is equal to assets
@@ -84,7 +84,7 @@ const SearchBar = () => {
     <div>
       <InputGroup>
         <FormControl
-          placeholder="Contract Address"
+          placeholder="Enter a collection slug or address"
           aria-label="Contract Address"
           aria-describedby="basic-addon2"
           value={contract}

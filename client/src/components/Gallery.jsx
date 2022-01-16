@@ -13,10 +13,8 @@ const Gallery = () => {
 
   if (status === "Loaded") {
     return (
-      <div>
-        <div className="gallery">
-          {status === "Loaded" ? <GalleryDisplay /> : status}
-        </div>
+      <div className="gallery">
+        {status === "Loaded" ? <GalleryDisplay /> : status}
       </div>
     );
   } else {

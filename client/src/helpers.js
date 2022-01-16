@@ -16,6 +16,8 @@ export const filterAssets = (assets, filters) => {
   let filteredAssets = [...assets];
   // Get filter keys
   const filterKeys = Object.keys(filters);
+
+  // console.log("filter keus", filterKeys);
   // Filter the assets by one key at a time
   filterKeys.forEach((key) => {
     filteredAssets = filteredAssets.filter((asset) => {
@@ -26,7 +28,7 @@ export const filterAssets = (assets, filters) => {
         let traits = asset.traits;
 
         traits.forEach((trait) => {
-          if (filters[key].includes(trait.value)) {
+          if (filters[key].includes(trait.value.toLowerCase())) {
             showAsset = true;
           }
         });

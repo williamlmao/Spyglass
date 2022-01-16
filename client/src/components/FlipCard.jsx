@@ -7,14 +7,14 @@ import FlipData from "./FlipData";
  * @param {*} param0
  * @returns
  */
-const FlipCard = ({ asset }) => {
+const FlipCard = ({ asset, collection }) => {
   return (
     <div className="flipcard">
       <div className="flipImageContainer">
         <img src={asset.imageUrl} className="flipImg" />
       </div>
 
-      <FlipData asset={asset} />
+      <FlipData asset={asset} collection={collection} />
     </div>
   );
 };

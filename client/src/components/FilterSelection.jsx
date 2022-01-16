@@ -18,6 +18,7 @@ const FilterSelection = () => {
   const [rangeSliderPrice, setRangeSliderPrice] = useState(0);
   // Handle updates in local state and then dispatch to store from useEffect. Could manage it out of redux altogether but figured this was easier
   const [filterState, setFilterState] = useState({});
+  console.log("filterState", filterState);
   const assets = useSelector((state) => state.storestate.assets);
   const collection = useSelector((state) => state.storestate.collection);
 
@@ -56,7 +57,8 @@ const FilterSelection = () => {
 
   // Builds check boxes
   // Takes an array
-  const buildFilterOptions = (trait) => {
+  const buildFilterOptions = (traitName, trait) => {
+    console.log("test", traitName, trait);
     let filterOptions = trait.map((value) => {
       return (
         <Form.Check
@@ -68,11 +70,12 @@ const FilterSelection = () => {
             let updatedFilterState = { ...filterState };
             if (e.target.checked) {
               if (updatedFilterState[trait] === undefined) {
-                updatedFilterState[trait] = [];
-                updatedFilterState[trait].push(value);
+                updatedFilterState[traitName] = [];
+                updatedFilterState[traitName].push(value);
                 setFilterState(updatedFilterState);
               } else {
-                updatedFilterState[trait].push(value);
+                updatedFilterState[traitName].push(value);
+                console.log("trait", trait, "value", value);
                 setFilterState(updatedFilterState);
               }
             } else {
@@ -99,7 +102,7 @@ const FilterSelection = () => {
         <Accordion.Item eventKey={index}>
           <Accordion.Header>{trait}</Accordion.Header>
           <Accordion.Body>
-            {buildFilterOptions(traitFilters[trait])}
+            {buildFilterOptions(trait, traitFilters[trait])}
           </Accordion.Body>
         </Accordion.Item>
       );
@@ -108,7 +111,7 @@ const FilterSelection = () => {
   };
 
   return (
-    <div>
+    <div className="filters">
       <p>Liked</p>
       <div>
         <Form.Check type="checkbox" label="Unliked" />

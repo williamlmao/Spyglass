@@ -3,13 +3,10 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import { filterAssets } from "../helpers";
 import SingleCard from "./SingleCard";
 
-const Grid = () => {
-  const filteredAssets = useSelector(
-    (state) => state.storestate.filteredAssets
-  );
+const Grid = ({ assets, collection }) => {
   const createGrid = () => {
-    return filteredAssets.map((asset, index) => {
-      return <SingleCard asset={asset} key={index} />;
+    return assets.map((asset, index) => {
+      return <SingleCard asset={asset} collection={collection} key={index} />;
     });
   };
   return <div id="Grid">{createGrid()}</div>;

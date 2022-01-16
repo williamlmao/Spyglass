@@ -5,11 +5,7 @@ import { setFlipIndex } from "../actions";
 import { filterAssets } from "../helpers";
 import FlipSubContainer from "./FlipSubContainer";
 
-const Flip = () => {
-  const filteredAssets = useSelector(
-    (state) => state.storestate.filteredAssets
-  );
-
+const Flip = ({ filteredAssets, collection }) => {
   const [index, setIndex] = useState(0);
 
   const handleRight = () => {
@@ -31,7 +27,10 @@ const Flip = () => {
     }
     return (
       <div className="flipview">
-        <FlipSubContainer asset={filteredAssets[index]} />
+        <FlipSubContainer
+          asset={filteredAssets[index]}
+          collection={collection}
+        />
       </div>
     );
   } else {
@@ -39,13 +38,4 @@ const Flip = () => {
   }
 };
 
-// import { useKey } from "react-use";
-
-// const Flip = () => {
-//   const [count, set] = useState(0);
-//   const increment = () => set((count) => ++count);
-//   useKey("ArrowUp", increment);
-
-//   return <div>Press arrow up: {count}</div>;
-// };
 export default Flip;

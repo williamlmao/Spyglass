@@ -7,24 +7,26 @@ import { filterAssets } from "./FilterSelection";
 
 const GalleryDisplay = () => {
   const view = useSelector((state) => state.storestate.view);
-  const assets = useSelector((state) => state.storestate.assets);
-
+  const filteredAssets = useSelector(
+    (state) => state.storestate.filteredAssets
+  );
+  const collection = useSelector((state) => state.storestate.collection);
   if (view === "Flip") {
     return (
       <div>
-        <Flip />
+        <Flip filteredAssets={filteredAssets} collection={collection} />
       </div>
     );
   } else if (view === "Feed") {
     return (
       <div>
-        <Feed />
+        <Feed assets={filteredAssets} collection={collection} />
       </div>
     );
   } else if (view === "Grid") {
     return (
       <div>
-        <Grid />
+        <Grid assets={filteredAssets} collection={collection} />
       </div>
     );
   } else {
