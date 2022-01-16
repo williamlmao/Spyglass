@@ -81,7 +81,6 @@ const Header = () => {
   return (
     <header>
       <span id="Logo">SPYGLASS</span>
-<<<<<<< HEAD
 
       {status !== "Loaded" ? (
         <div className="searchbar"></div>
@@ -99,36 +98,6 @@ const Header = () => {
 
         <Button>Browse by Price Fairness</Button>
         <ViewSelection />
-=======
-      <div className="searchbar">
-        <InputGroup className="mb-3 search">
-          <Button
-            variant="outline-secondary"
-            id="button-addon2"
-            onClick={() => {
-              setAssetStatus(dispatch, "Loading...");
-              setContractAddress(dispatch, contract);
-              loadCollection(contract);
-            }}
-          >
-            <i class="fa fa-search"></i>
-          </Button>
-          <FormControl
-            placeholder="Contract Address"
-            aria-label="Contract Address"
-            aria-describedby="basic-addon2"
-            value={contract}
-            onChange={(e) => setContract(e.target.value)}
-            className="searchbar"
-          />
-        </InputGroup>
-      </div>
-      <div style={{ display: "flex" }}>
-        <ViewSelection />
-        <Button variant="primary" onClick={handleShow}>
-          Filters
-        </Button>
->>>>>>> b52bf52459a8290a9a26d229d3fb72bc20e286c4
       </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
