@@ -70,3 +70,16 @@ export const setSelectedFilters = async (dispatch, selectedFilters) => {
     payload: selectedFilters,
   });
 };
+
+export const likeAsset = async (dispatch, token_id) => {
+  dispatch({
+    type: "LIKE_ASSET",
+    payload: token_id,
+  });
+};
+export const rateAsset = async (dispatch, tokenId, rating) => {
+  dispatch({
+    type: "RATE_ASSET",
+    payload: { tokenId, rating },
+  });
+};

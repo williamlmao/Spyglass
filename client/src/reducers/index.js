@@ -41,6 +41,16 @@ const storestate = (
       return { ...state, flipIndex: action.payload };
     case "SET_SELECTED_FILTERS":
       return { ...state, selectedFilters: action.payload };
+    case "LIKE_ASSET":
+      let updatedAssets = [...state.assets];
+      updatedAssets[action.payload].liked = true;
+      return { ...state, assets: updatedAssets };
+    case "RATE_ASSET":
+      let updatedAssets2 = [...state.assets];
+      console.log(action.payload);
+      console.log("#", action.payload.tokenId);
+      updatedAssets2[action.payload.tokenId].rating = action.payload.rating;
+      return { ...state, assets: updatedAssets2 };
     default:
       return state;
   }
