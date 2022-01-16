@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Modal from "react-bootstrap/Modal";
-import SearchBar from "./SearchBar";
 import { BsSearch } from "react-icons/bs";
 import {
   loadAssets,
@@ -21,9 +20,7 @@ import {
 } from "../actions";
 import { endpoint } from "../helpers";
 import "../fonts/pointpanther.otf";
-
-const Header = () => {
-  const status = useSelector((state) => state.storestate.assetStatus);
+const SearchBar = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;
   // todo: rename this and remove doodles-official
@@ -84,44 +81,30 @@ const Header = () => {
       });
   };
   return (
-    <header>
-      <span id="Logo">SPYGLASS</span>
-
-      {status !== "Loaded" ? (
-        <div className="searchbar"></div>
-      ) : (
-        <div className="searchbar">
-          <SearchBar />
-        </div>
-      )}
-
-      <div className="connectwallet">Connect Wallet</div>
-      <div className="header2">
-        <Button variant="primary" onClick={handleShow}>
-          Browse By Traits
+    <div>
+      <InputGroup>
+        <FormControl
+          placeholder="Contract Address"
+          aria-label="Contract Address"
+          aria-describedby="basic-addon2"
+          value={contract}
+          onChange={(e) => setContract(e.target.value)}
+          className="searchbar"
+        />
+        <Button
+          variant="outline-secondary"
+          id="button-addon2"
+          onClick={() => {
+            setAssetStatus(dispatch, "Loading...");
+            setContractAddress(dispatch, contract);
+            loadCollection(contract);
+          }}
+        >
+          <BsSearch />
         </Button>
-
-        <Button>Browse by Price Fairness</Button>
-        <ViewSelection />
-      </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-
-        <FilterSelection />
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </header>
+      </InputGroup>
+    </div>
   );
 };
 
-export default Header;
+export default SearchBar;

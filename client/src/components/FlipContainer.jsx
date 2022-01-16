@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useKey } from "react-use";
 import { setFlipIndex } from "../actions";
 import { filterAssets } from "../helpers";
-import FlipCard from "./FlipCard";
+import FlipSubContainer from "./FlipSubContainer";
 
 const Flip = () => {
   const filteredAssets = useSelector(
@@ -31,7 +31,7 @@ const Flip = () => {
     }
     return (
       <div className="flipview">
-        <FlipCard asset={filteredAssets[index]} />
+        <FlipSubContainer asset={filteredAssets[index]} />
       </div>
     );
   } else {

@@ -12,23 +12,25 @@
   padding: 0px 40px 0px 40px;
 }
 
-.searchbar {
-  width: 500px;
-}
-
 /* html {
   padding-left: 40px;
   padding-right: 40px;
 } */
 
 body {
-  padding-top: 110px;
+  margin-top: 130px;
   z-index: 0;
   background-color: #e5e5e5;
   overflow-x: hidden;
 }
 
-p {
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+div {
   font-family: "circularstd";
 }
 
@@ -49,25 +51,98 @@ p {
   font-family: "pointpanther";
   font-weight: 700;
   margin-right: 100px;
+  grid-area: "logo";
+  padding-left: 40px;
 }
 
 header {
-  display: flex;
-  padding: 10px 40px 0px 40px;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-areas:
+    "logo searchbar connectwallet"
+    "header2 header2 header2";
+  height: 130px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 75px 50px;
+  /* padding: 10px 40px 0px 40px; */
   position: fixed;
   top: 0;
   width: 100%;
-  background: white;
   z-index: 1;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+}
+
+.header2 button {
+  width: 100%;
+  border-radius: 0;
+  background-color: #ffffff;
+  color: black;
+}
+
+.header2 .btn-primary {
+  border-color: black;
+  border-bottom: 3px solid black;
+  color: black;
+}
+
+.header2 {
+  grid-area: header2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border: 2px solid black;
+  border-bottom: 4px solid black;
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+.header2 button {
+  border: 2px solid black;
+  outline: none;
+}
+.searchbar {
+  width: 500px;
+  grid-area: searchbar;
+  align-self: center;
+}
+
+.viewSettings {
+  display: grid;
+  grid-template-areas:
+    "viewbutton1 viewbutton2 viewbutton3"
+    "viewspan viewspan viewspan";
+  flex-direction: column;
+}
+.viewspan {
+  grid-area: viewspan;
+  font-size: 12px;
+  text-align: center;
+  height: 20px;
+  width: 100%;
+  background: white;
+  border: 2px solid black;
+  border-bottom: 3px solid black;
+}
+.viewbutton1 {
+  grid-area: viewbutton1;
+}
+
+.viewbutton2 {
+  grid-area: viewbutton2;
+}
+.viewbutton3 {
+  grid-area: viewbutton3;
+}
+
+.header-layer1 {
+  border: solid 1px;
 }
 
 .gallery {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 150px;
   padding: 40px;
   width: 100%;
 }
@@ -77,10 +152,7 @@ header {
   height: 100%;
   margin-top: -32px;
 }
-.flipcard {
-  width: 500px;
-  height: 800px;
-}
+
 .flipcardLayer1 {
   display: flex;
   justify-content: space-between;
@@ -117,4 +189,51 @@ header {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.valuationBox {
+  display: flex;
+  width: 460px;
+  height: 31px;
+  margin: 18px 247px 259px 29px;
+  border-radius: 2px;
+  border: solid 1px #37f15c;
+}
+
+.valuation-overpriced {
+  height: 100%;
+  font-family: "CircularStd";
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #fff;
+  background-color: #37f15c;
+  padding-right: 10px;
+  margin-right: 5px;
+}
+
+.connectwallet {
+  width: 200px;
+  height: 40px;
+  padding-top: 10px;
+  text-align: center;
+  line-height: 1.5px;
+  border-radius: 20px;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 40px;
+  line-height: 1;
+  color: white;
+  background-color: black;
+}
+
+.startingpage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

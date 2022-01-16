@@ -7,33 +7,36 @@ import Button from "react-bootstrap/Button";
 const ViewSelection = () => {
   const dispatch = useDispatch();
   return (
-    <div className="settings">
-      <ButtonGroup aria-label="Basic example">
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setView(dispatch, "Grid");
-          }}
-        >
-          Grid
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setView(dispatch, "Feed");
-          }}
-        >
-          Feed
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setView(dispatch, "Flip");
-          }}
-        >
-          Flipbook
-        </Button>
-      </ButtonGroup>
+    <div className="viewSettings">
+      <div className="viewspan">Views</div>
+
+      <Button
+        variant="secondary"
+        onClick={() => {
+          setView(dispatch, "Grid");
+        }}
+        className="viewbutton1"
+      >
+        Grid
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          setView(dispatch, "Feed");
+        }}
+        className="viewbutton2"
+      >
+        Feed
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          setView(dispatch, "Flip");
+        }}
+        className="viewbutton3"
+      >
+        Flipbook
+      </Button>
     </div>
   );
 };

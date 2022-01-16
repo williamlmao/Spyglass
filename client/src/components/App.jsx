@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       <Header />
-      <CollectionInfo />
+      {/* <CollectionInfo /> */}
       <Gallery />
     </div>
   );

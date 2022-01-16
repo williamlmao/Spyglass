@@ -1,14 +1,20 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 
 const NoAssetDisplay = ({ status }) => {
-  let msg;
   if (status === "No Address") {
-    msg = <h1>Search for a collection to get started</h1>;
+    return (
+      <div className="startingpage">
+        <div className="startingpagecontents">
+          <h1>Find the best NFTs on the OpenSea with Spyglass</h1>
+          <h3>Start by searching for a collection</h3>
+          <SearchBar />
+        </div>
+      </div>
+    );
   } else {
-    msg = <h1>Loading...This may take up to 30 seconds...</h1>;
+    return <div>Loading...</div>;
   }
-
-  return <div className="NoAssetDisplay">{msg}</div>;
 };
 
 export default NoAssetDisplay;

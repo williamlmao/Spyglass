@@ -18,7 +18,7 @@ import { useKeyPressEvent } from "react-use";
 
 // Receives asset, manages controls such as like and rate. Parent of flipcard
 
-const FlipCard = ({ asset }) => {
+const FlipSubContainer = ({ asset }) => {
   console.log("im rerendering", asset.rating);
   let dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
@@ -131,4 +131,4 @@ const FlipCard = ({ asset }) => {
   );
 };
 
-export default FlipCard;
+export default FlipSubContainer;
