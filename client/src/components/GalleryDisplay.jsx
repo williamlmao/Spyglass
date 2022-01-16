@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
-import Flip from "./Flip";
+import Flip from "./FlipContainer";
 import Grid from "./Grid";
 import Feed from "./Feed";
 import { filterAssets } from "./FilterSelection";
