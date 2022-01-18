@@ -1,6 +1,5 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import spyglass from "./images/spyglass.png";
 const NoAssetDisplay = ({ status }) => {
   if (status === "No Address") {
     return (
@@ -99,7 +98,7 @@ const NoAssetDisplay = ({ status }) => {
           {process.env.NODE_ENV === "development" ? null : (
             <div className="warning">
               Please note that this version of the site is for demo purposes
-              only. IMPORTANT: The price data as well as valuations may not be
+              only. IMPORTANT: The price data as well as valuations are not
               completely accurate! It currently only supports two slugs:
               boredapeyachtclub and doodles-official. Some features may not be
               working, such as price filters and wallet connection.
@@ -114,7 +113,7 @@ const NoAssetDisplay = ({ status }) => {
     return (
       <div className="startingpage">
         <div className="startingpagecontents">
-          <h1>Loading....</h1>
+          <h1>Demo Loading...This might take 10-15 seconds...</h1>
         </div>
       </div>
     );

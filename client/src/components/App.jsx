@@ -1,4 +1,4 @@
-import React from "react";
+ow import React from "react";
 import "../styles.css";
 import "../fonts/circularstd.ttf";
 import "bootstrap/dist/css/bootstrap.min.css";

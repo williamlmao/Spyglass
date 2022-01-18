@@ -24,7 +24,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;
   // todo: rename this and remove doodles-official
-  const [contract, setContract] = useState("");
+  const [contract, setContract] = useState("boredapeyachtclub");
   //modal
   const [show, setShow] = useState(false);
 

@@ -10,6 +10,7 @@ import {
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+import CollectionInfo from "./CollectionInfo";
 import Modal from "react-bootstrap/Modal";
 import SearchBar from "./SearchBar";
 import { BsSearch } from "react-icons/bs";
@@ -30,7 +31,7 @@ const Header = () => {
   const [contract, setContract] = useState("doodles-official");
   //modal
   const [show, setShow] = useState(false);
-
+  const [showCollectionDetails, setShowCollectionDetails] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -108,6 +109,13 @@ const Header = () => {
           <Modal.Title>Filters</Modal.Title>
         </Modal.Header>
         <FilterSelection />
+        <Modal.Footer></Modal.Footer>
+      </Modal>
+      <Modal show={showCollectionDetails} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Collection Details</Modal.Title>
+        </Modal.Header>
+        <CollectionInfo />
         <Modal.Footer></Modal.Footer>
       </Modal>
     </header>
