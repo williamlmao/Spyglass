@@ -28,7 +28,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;
   // todo: rename this and remove doodles-official
-  const [contract, setContract] = useState("doodles-official");
+  const [contract, setContract] = useState("boredapeyachtclub");
   //modal
   const [show, setShow] = useState(false);
   const [showCollectionDetails, setShowCollectionDetails] = useState(false);
@@ -37,7 +37,7 @@ const Header = () => {
 
   const loadCollection = (contractSlug) => {
     // These assets to be consumed different later on
-    let limit = 500;
+    let limit = 50;
     const options = (type, slug, limit, i) => {
       return {
         method: "GET",
