@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
-import ToggleButton from "react-bootstrap/ToggleButton";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Table from "react-bootstrap/Table";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import eth from "./images/eth.png";
 /**
  * A single card grid or feed view

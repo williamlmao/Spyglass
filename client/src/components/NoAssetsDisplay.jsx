@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+
 const NoAssetDisplay = ({ status }) => {
   if (status === "No Address") {
     return (

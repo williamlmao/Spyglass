@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import FlipCard from "./FlipCard";
-import FlipData from "./FlipData";
-import Button from "react-bootstrap/Button";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import {
-  AiOutlineCaretLeft,
-  AiOutlineCaretRight,
-  AiFillHeart,
-  AiOutlineHeart,
-} from "react-icons/ai";
-import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { likeAsset, rateAsset } from "../actions";
+import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { useKeyPressEvent } from "react-use";
+import { likeAsset, rateAsset } from "../actions";
+import FlipCard from "./FlipCard";
 import opensea from "./images/opensealogo.png";
 
 // Receives asset, manages controls such as like and rate. Parent of flipcard

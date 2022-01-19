@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import SingleCard from "./SingleCard";
-import eth from "./images/eth.png";
+import React from "react";
 import Table from "react-bootstrap/Table";
+import eth from "./images/eth.png";
 const FlipData = ({ asset, collection }) => {
   let priceDiff = asset.predictedPrice - asset.buyNowPrice;
   let avgPrice = collection.slug === "doodles-official" ? 11.521 : 86.2;

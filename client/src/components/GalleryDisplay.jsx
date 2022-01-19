@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
+import Feed from "./Feed";
 import Flip from "./FlipContainer";
 import Grid from "./Grid";
-import Feed from "./Feed";
-import { filterAssets } from "./FilterSelection";
 
 const GalleryDisplay = () => {
   const view = useSelector((state) => state.storestate.view);

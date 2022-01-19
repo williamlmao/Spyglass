@@ -1,12 +1,9 @@
-ow import React from "react";
-import "../styles.css";
-import "../fonts/circularstd.ttf";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./Header";
+import React from "react";
+import "../fonts/circularstd.ttf";
+import "../styles.css";
 import Gallery from "./Gallery";
-import { loadAssets } from "../actions";
-import Test from "./Test";
-import CollectionInfo from "./CollectionInfo";
+import Header from "./Header";
 
 const App = () => {
   return (

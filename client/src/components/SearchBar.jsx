@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
-import ViewSelection from "./ViewSelection";
-import FilterSelection from "./FilterSelection";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  initializeFilteredAssets,
-  setContractAddress,
-  initializeCollection,
-} from "../actions";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-import Modal from "react-bootstrap/Modal";
+import InputGroup from "react-bootstrap/InputGroup";
 import { BsSearch } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import {
+  initializeCollection,
+  initializeFilteredAssets,
   loadAssets,
   loadInitialAssets,
   setAssetStatus,
-  setFilteredAssets,
+  setContractAddress,
 } from "../actions";
-import { endpoint } from "../helpers";
 import "../fonts/pointpanther.otf";
+import { endpoint } from "../helpers";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const axios = require("axios").default;

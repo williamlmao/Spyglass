@@ -1,7 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import FlipCard from "./FlipCard";
-import SingleCard from "./SingleCard";
 
 /**
  * Feed view

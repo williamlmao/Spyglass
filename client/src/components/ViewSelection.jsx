@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setView } from "../actions";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import React from "react";
 import Button from "react-bootstrap/Button";
+import { useDispatch } from "react-redux";
+import { setView } from "../actions";
 
 const ViewSelection = () => {
   const dispatch = useDispatch();

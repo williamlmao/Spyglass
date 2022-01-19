@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { useKey } from "react-use";
-import { setFlipIndex } from "../actions";
-import { filterAssets } from "../helpers";
 import FlipSubContainer from "./FlipSubContainer";
 
 const Flip = ({ filteredAssets, collection }) => {

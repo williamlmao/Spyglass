@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import FlipData from "./FlipData";
 /**
  * A single card grid or feed view

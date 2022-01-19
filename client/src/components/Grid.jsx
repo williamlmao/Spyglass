@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
-import { filterAssets } from "../helpers";
 import SingleCard from "./SingleCard";
 
 const Grid = ({ assets, collection }) => {

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import RangeSlider from "react-bootstrap-range-slider";
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
 import { setFilteredAssets, setSelectedFilters } from "../actions";
 import { filterAssets } from "../helpers";
-import RangeSlider from "react-bootstrap-range-slider";
-
-import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 
 /**
  * Displays the options for filters, but also triggers setFilteredAssets
